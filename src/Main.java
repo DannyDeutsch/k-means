@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        // Handle command line input
+        if (args.length != 3) {
+            System.out.println("Must specify 3 command line arguments:\njava Main <dataset filename> <k> <output filename>");
+            System.exit(0);
+        }
+
+        Database db = null;
+
+        try {
+            db = new Database(args[0]);
+        } catch (Exception e) {
+            System.out.println("Could not create new Database object");
+        }
+
+        int k = Integer.parseInt(args[1]);
+
+
+        // Run k-means
+        KMeans km = new KMeans(db, k);
+        // List<Cluster> clusters = new ArrayList<Cluster>();
+        // clusters = km.runKMeans();
+        List<Cluster> clusters = km.runKMeans();
+
+
+        // Print results to output file
+        File fOut = new File(args[2]);
+        try
+        {
+            PrintWriter pw = new PrintWriter(fOut);
+
+            //TODO: fix
+            for (Cluster c : clusters) {
+                pw.println("Size: " + c.size());
+                pw.println("Centroid: " + c.centroid);
+                pw.println("Records: " + c.records);
+            }
+
+            pw.close();
+        }
+        catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
+}
