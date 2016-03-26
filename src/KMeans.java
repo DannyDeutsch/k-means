@@ -1,5 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Set;
+import java.util.LinkedHashSet;
 
 
 public class KMeans
@@ -15,21 +18,20 @@ public class KMeans
 
 	public List<Cluster> runKMeans()
 	{
-		// Create k clusters, each with a random centroid
 		List<Cluster> clusters = new ArrayList<Cluster>();
-		List<Integer> centroids = new ArrayList<Integer>();
+		Set<List<Integer>> centroids = new LinkedHashSet<List<Integer>>();
 		int dimensions = db.data.get(0).size();
 
 
-		/*for (int i=0; i<k; i++)
-		{
-			clusters.add(new Cluster());
+		// Assigns random records to be initial centroids
+		Random rand = new Random();
+		int randIdx;
 
-			centroids.add(
-				clusters.get(i).centroid = i 	//TODO: random centroid
-			);
-		}*/
-
+		while (centroids.size() < k) {
+			randIdx = rand.nextInt(db.data.size());
+			System.out.println("randIdx = " + randIdx);
+			centroids.add( db.data.get(randIdx) );    //retrieves record from random index
+		}
 
 
 		// Exit loop once no more re-assigments are necessary
