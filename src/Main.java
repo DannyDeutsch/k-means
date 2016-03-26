@@ -7,7 +7,7 @@ public class Main
     {
         // Handle command line input
         if (args.length != 3) {
-            System.out.println("Must specify 3 command line arguments:\njava Main <dataset filename> <k> <output filename>");
+            System.out.println("Must specify 3 command line arguments:\n$ java Main <dataset filename> <k> <output filename>");
             System.exit(0);
         }
 
