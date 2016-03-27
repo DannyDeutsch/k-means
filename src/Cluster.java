@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Cluster
 {
+	public List<Integer> centroid;
 	public List<List<Integer>> records = new ArrayList<List<Integer>>();
-	public int centroid;	//TODO: type correct?
 
 	// Constructor
-	public Cluster() { }
+	public Cluster(List<Integer> centroid) {
+		this.centroid = centroid;
+	}
 
 
 	// Add record to Cluster

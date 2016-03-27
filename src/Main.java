@@ -22,6 +22,13 @@ public class Main
         int k = Integer.parseInt(args[1]);
 
 
+        // Make sure DB has enough records given k
+        if (db.data.size() < k) {
+            System.out.println("'k' is larger than the number of records in the database!");
+            System.exit(0);
+        }
+
+
         // Run k-means
         KMeans km = new KMeans(db, k);
         // List<Cluster> clusters = new ArrayList<Cluster>();
