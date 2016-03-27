@@ -40,9 +40,10 @@ public class KMeans
 
 
 		// Exit loop once no more re-assigments are necessary
-		// while (/* assignments are not yet stable */)
 		List<Double> closestCentroid;
-		for (int i = 0; i < 1; i++)
+		Set<List<Double>> prevCentroids = new LinkedHashSet<List<Double>>();
+		// for (int i=0; i<3; i++)
+		while (true)
 		{
 			// Re-assign each record to cluster with nearest centroid
 			for (List<Double> record : db.data) {
@@ -54,7 +55,7 @@ public class KMeans
 
 				closestCentroid = hm.get(pq.peek());    //closest centroid
 				
-				System.out.println("Record " + record + " is closest to centroid " + closestCentroid);
+				System.out.println("\nRecord " + record + " is closest to centroid " + closestCentroid);
 
 
 				// Add record to Cluster identified by 'centroid'
@@ -78,14 +79,21 @@ public class KMeans
 
 
 			// Update centroid location to be mean point of cluster
+			prevCentroids.clear();
+			prevCentroids.addAll(centroids);
+			centroids.clear();
 			for (Cluster c : clusters) {
 				c.centroid = calcMean(c.records, dimensions);
 				centroids.add(c.centroid);
 			}
 
-			for (Cluster c : clusters) {
-				System.out.print("\nNew centroid: " + c.centroid);
-			}
+			System.out.println("\nprevCentroids: " + prevCentroids);
+			System.out.println("New centroids: " + centroids);
+
+
+			// If centroid location wasn't updated
+			// i.e. no more re-assignments necessary
+			if (centroids.equals(prevCentroids)) break;
 		}
 
 
@@ -94,7 +102,7 @@ public class KMeans
 
 
 	/* Calculates mean point of a given cluster */
-	private List<Double> calcMean(List<List<Double>> records, int dimensions)
+	private List<Double> calcMean(Set<List<Double>> records, int dimensions)
 	{
 		// TODO: If no records were assigned to centroid
 		if (records.isEmpty()) {

@@ -46,7 +46,7 @@ public class Main
             for (Cluster c : clusters) {
                 pw.println("Size: " + c.size());
                 pw.println("Centroid: " + c.centroid);
-                pw.println("Records: " + c.records);
+                pw.println("Records: " + c.records + "\n");
             }
 
             pw.close();
