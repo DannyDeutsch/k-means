@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class Cluster
 {
-	public List<Integer> centroid;
-	public List<List<Integer>> records = new ArrayList<List<Integer>>();
+	public List<Double> centroid;
+	public List<List<Double>> records = new ArrayList<List<Double>>();
 
 	// Constructor
-	public Cluster(List<Integer> centroid) {
+	public Cluster(List<Double> centroid) {
 		this.centroid = centroid;
 	}
 
 
 	// Add record to Cluster
-	public void addToCluster(List<Integer> record) {
+	public void addToCluster(List<Double> record) {
 		records.add(record);
 	}
 

@@ -8,12 +8,12 @@ import java.io.InputStreamReader;
 
 public class Database
 {
-	public List<List<Integer>> data;
+	public List<List<Double>> data;
 
 
 	public Database(String fName) throws Exception
 	{
-		data = new ArrayList<List<Integer>>();
+		data = new ArrayList<List<Double>>();
 
 
 		FileInputStream fin = new FileInputStream(fName);
@@ -25,10 +25,10 @@ public class Database
         String line;
         while ((line = stdin.readLine()) != null)
         {
-            List<Integer> record = new ArrayList<Integer>();
+            List<Double> record = new ArrayList<Double>();
             String[] temp = line.split("\\s+");
 
-            for (String attrVal : temp) record.add(Integer.parseInt(attrVal));
+            for (String attrVal : temp) record.add(Double.parseDouble(attrVal));
 
             if (record.isEmpty()) continue;
 
