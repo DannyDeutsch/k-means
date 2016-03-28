@@ -31,8 +31,6 @@ public class Main
 
         // Run k-means
         KMeans km = new KMeans(db, k);
-        // List<Cluster> clusters = new ArrayList<Cluster>();
-        // clusters = km.runKMeans();
         List<Cluster> clusters = km.runKMeans();
 
 

@@ -32,7 +32,6 @@ public class KMeans
 			centroids.add( db.data.get(randIdx) );    //retrieves record from random index
 		}
 
-		System.out.println("Centroids: " + centroids + "\n");
 
 		for (List<Double> centroid : centroids) {
 			clusters.add(new Cluster(centroid));
@@ -54,8 +53,6 @@ public class KMeans
 				}
 
 				closestCentroid = hm.get(pq.peek());    //closest centroid
-				
-				System.out.println("\nRecord " + record + " is closest to centroid " + closestCentroid);
 
 
 				// Add record to Cluster identified by 'centroid'
@@ -72,11 +69,6 @@ public class KMeans
 				pq.clear();
 			}
 
-			for (Cluster cluster : clusters) {
-				System.out.println("\nCentroid: " + cluster.centroid);
-				System.out.println("Records: " + cluster.records);
-			}
-
 
 			// Update centroid location to be mean point of cluster
 			prevCentroids.clear();
@@ -86,9 +78,6 @@ public class KMeans
 				c.centroid = calcMean(c.records, dimensions);
 				centroids.add(c.centroid);
 			}
-
-			System.out.println("\nprevCentroids: " + prevCentroids);
-			System.out.println("New centroids: " + centroids);
 
 
 			// If centroid location wasn't updated
@@ -104,11 +93,6 @@ public class KMeans
 	/* Calculates mean point of a given cluster */
 	private List<Double> calcMean(Set<List<Double>> records, int dimensions)
 	{
-		// TODO: If no records were assigned to centroid
-		if (records.isEmpty()) {
-			return null;
-		}
-
 		List<Double> mean = new ArrayList<Double>();
 		int sum = 0;
 
